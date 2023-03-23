@@ -1,0 +1,29 @@
+:root {
+    --black: #000000;
+    --white: #ffffff;
+    --red: #EA5555;
+    --darkBlue: #635FC7;
+    --veryLightBlue: #f0effa;
+    --lightBlue: #A8A4FF;
+    --lightGray: #F4F7FD;
+    --lightGrayLine: #E4EBFA;
+    --mediumGray: #828fa3;
+    --darkGray: #2B2C37;
+    --darkGrayLine: #3E3F4E;
+    --veryDarkGray: #20212C;
+    --cardShadow: rgba(54, 78, 126, 0.101545);
+    --overlay: rgba(0, 0, 0, 0.5);
+    --mediumGrayOpacity: rgba(130, 143, 163, 0.4);
+    --mediumGrayGradient: linear-gradient(rgba(121, 132, 147, 0.2), rgba(130, 143, 163, 0.1), rgba(130, 143, 163, 0));
+    --darkBlueOpacity: rgba(99, 95, 199, 0.25);
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
