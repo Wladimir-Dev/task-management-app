@@ -1,0 +1,51 @@
+.header {
+  width: 100%;
+  height: 10rem;
+  background-color: var(--darkGray);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  align-items: center;
+  column-gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+.boardName {
+  font-size: 1.9rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+.boardName > svg {
+  padding-left: 0.5rem;
+  width: auto;
+  display: inline-block;
+}
+.containerBoards {
+  display: none;
+  padding: 0rem 1.5rem;
+  top: 10rem;
+  left: 0;
+  width: 100%;
+  /* left: calc(50% - 10rem); */
+  position: absolute;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.144);
+}
+.containerOptions {
+  display: none;
+  transition: transform 0.2s ease !important;
+}
+.addButton {
+  border-style: none;
+  background-color: var(--darkBlue);
+  width: 4.5rem;
+  height: 3rem;
+  border-radius: 1.5rem;
+  padding-top: 0.2rem;
+}
+.boardName ~ input:checked ~ .containerBoards {
+  display: block;
+
+  transition: transform 0.2s ease !important;
+}
