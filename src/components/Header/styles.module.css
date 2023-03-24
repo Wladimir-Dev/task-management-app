@@ -27,25 +27,19 @@
   top: 10rem;
   left: 0;
   width: 100%;
-  /* left: calc(50% - 10rem); */
   position: absolute;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.144);
 }
 .containerOptions {
   display: none;
-  transition: transform 0.2s ease !important;
 }
 .addButton {
-  border-style: none;
   background-color: var(--darkBlue);
-  width: 4.5rem;
-  height: 3rem;
-  border-radius: 1.5rem;
-  padding-top: 0.2rem;
+  /* width: 4.5rem; */
+  padding: .6rem 1.5rem;
+  padding-top: .8rem;
 }
 .boardName ~ input:checked ~ .containerBoards {
   display: block;
-
-  transition: transform 0.2s ease !important;
 }

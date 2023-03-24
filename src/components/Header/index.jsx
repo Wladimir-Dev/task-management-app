@@ -1,6 +1,11 @@
 import React, { useId } from 'react'
 import { ListOfBoards } from '../../containers/ListOfBoards'
-import { AddTaskMobileIcon, ChevronDownIcon, LogoMobileIcon, VerticalEllipsisIcon } from '../Icons'
+import {
+  AddTaskMobileIcon,
+  ChevronDownIcon,
+  LogoMobileIcon,
+  VerticalEllipsisIcon
+} from '../Icons'
 import styles from './styles.module.css'
 export default function Header () {
   const boardsId = useId()
@@ -11,7 +16,7 @@ export default function Header () {
       <figure>
         <LogoMobileIcon />
       </figure>
-      <label htmlFor={boardsId} className={styles.boardName}>
+      <label htmlFor={boardsId} className={`${styles.boardName}`}>
         Platform Launch
         <ChevronDownIcon />
       </label>
@@ -27,8 +32,8 @@ export default function Header () {
       </label>
       <input type='checkbox' id={optionsId} hidden />
       <div className={styles.containerOptions}>
-        <botton>Edit</botton>
-        <botton>Delete</botton>
+        <button>Edit</button>
+        <button>Delete</button>
       </div>
     </header>
   )

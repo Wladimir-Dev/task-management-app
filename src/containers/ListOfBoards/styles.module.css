@@ -7,7 +7,6 @@
   background-color: var(--darkGray);
   min-width: 100%;
   height: fit-content;
-  transition: transform 0.2s ease;
   border-radius: 0.8rem;
   row-gap: 1.5rem;
 }
@@ -67,8 +66,8 @@
 }
 .footer > button > span {
   position: absolute;
-  top: .2rem;
-  left: .5rem;
+  top: .3rem;
+  left: .6rem;
   background-color: white;
   width: 1.5rem;
   height: 1.5rem;
