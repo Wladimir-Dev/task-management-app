@@ -4,10 +4,13 @@ import { CloseIcon } from '../Icons'
 
 import styles from './styles.module.css'
 
-export const NewBoard = ({ showWindow }) => {
-  const [columns, setColumns] = useState([{ id: 'ip1', value: '' }])
-  const { boards, setBoards } = useTask()
+export const FormBoard = ({ showWindow, board = undefined }) => {
+  const [columns, setColumns] = useState(
+    board?.columns || [{ id: 'ip1', name: '' }]
+  )
+  const { updateBoard, createBoard } = useTask()
   const nameId = useId()
+
   const generarId = () => {
     return Math.random()
   }
@@ -16,7 +19,7 @@ export const NewBoard = ({ showWindow }) => {
     const auxColumns = [...columns]
     const newId = generarId()
 
-    auxColumns.push({ id: newId, value: '' })
+    auxColumns.push({ id: newId, name: '' })
     setColumns(auxColumns)
   }
   const handleDeleteColumn = (id) => {
@@ -30,31 +33,46 @@ export const NewBoard = ({ showWindow }) => {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    const objAux = {
-      id: 3,
-      name: e.target.nameId.value,
-      columns: columns.map((column) => ({
-        id: column.id,
-        name: document.getElementById(column.id).value
-      }))
+
+    const auxColumns = columns.map((column) => ({
+      id: column.id,
+      name: document.getElementById(column.id).value
+    }))
+
+    if (board) {
+      updateBoard({
+        idNewBoard: board.id,
+        nameBoard: e.target.nameId.value,
+        columnsBoard: auxColumns
+      })
+    } else {
+      const objAux = {
+        id: 3,
+        name: e.target.nameId.value,
+        columns: auxColumns
+      }
+      createBoard(objAux)
     }
-    const auxBoards = [...boards, objAux]
-    setBoards(auxBoards)
     showWindow(false)
   }
 
   return (
     <form className={styles.newBoard} onSubmit={handleSubmit}>
-      <h2>add new board</h2>
+      {board ? <h2>edit board</h2> : <h2>add new board</h2>}
       <fieldset>
         <label htmlFor={nameId}>name</label>
-        <input type='text' id={nameId} name='nameId' />
+        <input
+          type='text'
+          id={nameId}
+          name='nameId'
+          defaultValue={board && board.name}
+        />
       </fieldset>
       <fieldset>
         <label htmlFor=''>columns</label>
         {columns.map((column) => (
           <div key={column.id} className={styles.containerInput}>
-            <input id={column.id} type='text' defaultValue={column.value} />
+            <input id={column.id} type='text' defaultValue={column.name} />
             {columns.length > 1 && (
               <button
                 type='button'
@@ -75,7 +93,7 @@ export const NewBoard = ({ showWindow }) => {
       </fieldset>
 
       <button type='submit' className={styles.blueButton}>
-        Create New Board
+        {board ? 'save changes' : 'Create New Board'}
       </button>
       <button
         type='button'

@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { BoardIcon, DarkLogoIcon, LightLogoIcon } from '../../components/Icons'
-import { NewBoard } from '../../components/NewBoard'
+import { FormBoard } from '../../components/FormBoard'
 import { useTask } from '../../hooks/useTask'
+
 import styles from './styles.module.css'
+
 export function ListOfBoards ({ closeWindow }) {
   const { boards, setCurrentBoard, currentBoard } = useTask()
   const [showNewBoard, setShowNewBoard] = useState(false)
@@ -10,8 +12,8 @@ export function ListOfBoards ({ closeWindow }) {
   const handleNewBoard = () => {
     setShowNewBoard(true)
   }
-  const handleBoard = (boardName) => {
-    setCurrentBoard(boardName)
+  const handleBoard = (board) => {
+    setCurrentBoard(board)
     closeWindow()
   }
   return (
@@ -21,8 +23,8 @@ export function ListOfBoards ({ closeWindow }) {
         {boards.map((board) => (
           <li
             key={board.id}
-            onClick={() => handleBoard(board.name)}
-            className={currentBoard === board.name && styles.boardActive}
+            onClick={() => handleBoard(board)}
+            className={currentBoard.name === board.name && styles.boardActive}
           >
             <BoardIcon />
             {board.name}
@@ -39,7 +41,7 @@ export function ListOfBoards ({ closeWindow }) {
         </button>
         <LightLogoIcon />
       </div>
-      {showNewBoard && <NewBoard showWindow={setShowNewBoard} />}
+      {showNewBoard && <FormBoard showWindow={setShowNewBoard} />}
     </div>
   )
 }

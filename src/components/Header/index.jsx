@@ -1,6 +1,7 @@
-import React, { useId, useRef } from 'react'
+import React, { useId, useRef, useState } from 'react'
 import { ListOfBoards } from '../../containers/ListOfBoards'
 import { useTask } from '../../hooks/useTask'
+import { FormBoard } from '../FormBoard'
 import {
   AddTaskMobileIcon,
   ChevronDownIcon,
@@ -15,9 +16,15 @@ export default function Header () {
   const boardsId = useId()
   const optionsId = useId()
   const refCheckBoards = useRef()
+  const refCheckOptions = useRef()
+  const [showEditBoard, setShowEditBoard] = useState(false)
 
   const closeListBoards = () => {
     refCheckBoards.current.checked = false
+  }
+  const handleEditBoard = () => {
+    setShowEditBoard(true)
+    refCheckOptions.current.checked = false
   }
   return (
     <header className={styles.header}>
@@ -25,7 +32,7 @@ export default function Header () {
         <LogoMobileIcon />
       </figure>
       <label htmlFor={boardsId} className={`${styles.boardName}`}>
-        {currentBoard}
+        {currentBoard.name}
         <ChevronDownIcon />
       </label>
       <input ref={refCheckBoards} type='checkbox' id={boardsId} hidden />
@@ -35,14 +42,17 @@ export default function Header () {
       <button type='button' className={styles.addButton}>
         <AddTaskMobileIcon />
       </button>
-      <label htmlFor={optionsId}>
+      <label htmlFor={optionsId} className={styles.optionIcon}>
         <VerticalEllipsisIcon />
       </label>
-      <input type='checkbox' id={optionsId} hidden />
+      <input ref={refCheckOptions} type='checkbox' id={optionsId} hidden />
       <div className={styles.containerOptions}>
-        <button>Edit</button>
-        <button>Delete</button>
+        <button type='button' onClick={handleEditBoard}>
+          Edit Board
+        </button>
+        <button type='button'>Delete Board</button>
       </div>
+      {showEditBoard && <FormBoard showWindow={setShowEditBoard} board={currentBoard} />}
     </header>
   )
 }

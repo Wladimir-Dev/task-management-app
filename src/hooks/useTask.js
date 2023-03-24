@@ -2,6 +2,27 @@ import { useContext } from 'react'
 import { BoardContext } from '../context/BoardContext'
 
 export const useTask = () => {
-  const { boards, setBoards, currentBoard, setCurrentBoard } = useContext(BoardContext)
-  return { boards, setBoards, currentBoard, setCurrentBoard }
+  const { boards, setBoards, currentBoard, setCurrentBoard } =
+    useContext(BoardContext)
+
+  const updateBoard = ({ idNewBoard, nameBoard, columnsBoard }) => {
+    const index = boards.findIndex((oldBoard) => oldBoard.id === idNewBoard)
+    const auxBoards = [...boards]
+    auxBoards[index].name = nameBoard
+    auxBoards[index].columns = columnsBoard
+    setBoards(auxBoards)
+  }
+  const createBoard = (newBoard) => {
+    const auxBoards = [...boards, newBoard]
+    setBoards(auxBoards)
+  }
+
+  return {
+    boards,
+    setBoards,
+    currentBoard,
+    setCurrentBoard,
+    updateBoard,
+    createBoard
+  }
 }
