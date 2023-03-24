@@ -40,7 +40,7 @@ export const NewBoard = ({ showWindow }) => {
     }
     const auxBoards = [...boards, objAux]
     setBoards(auxBoards)
-    console.log(auxBoards)
+    showWindow(false)
   }
 
   return (
