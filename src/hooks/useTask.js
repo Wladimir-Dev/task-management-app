@@ -1,8 +1,7 @@
-import { useState } from 'react'
-import data from '../mocks/data.json'
+import { useContext } from 'react'
+import { BoardContext } from '../context/BoardContext'
 
 export const useTask = () => {
-  const [boards, setBoards] = useState([data.boards])
-
+  const { boards, setBoards } = useContext(BoardContext)
   return { boards, setBoards }
 }

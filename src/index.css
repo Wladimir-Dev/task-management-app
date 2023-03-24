@@ -37,4 +37,5 @@ fieldset,button,input    {
 }
 button{
   border-radius: 1.5rem;
+  cursor: pointer;
 }

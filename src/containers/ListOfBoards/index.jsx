@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { BoardIcon, DarkLogoIcon, LightLogoIcon } from '../../components/Icons'
 import { NewBoard } from '../../components/NewBoard'
-import data from '../../mocks/data.json'
+import { useTask } from '../../hooks/useTask'
 import styles from './styles.module.css'
-export function ListOfBoards() {
-  const boards = data.boards
-  const [newBoard, setNewBoard] = useState(false)
+export function ListOfBoards () {
+  const { boards } = useTask()
+  const [showNewBoard, setShowNewBoard] = useState(false)
   const handleNewBoard = () => {
-    setNewBoard(true)
+    setShowNewBoard(true)
   }
   return (
     <div className={styles.listOfBoards}>
@@ -30,7 +30,7 @@ export function ListOfBoards() {
         </button>
         <LightLogoIcon />
       </div>
-      {newBoard && <NewBoard />}
+      {showNewBoard && <NewBoard showWindow={setShowNewBoard} />}
     </div>
   )
 }

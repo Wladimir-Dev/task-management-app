@@ -59,3 +59,8 @@
   background-color: var(--darkBlue);
   color: white;
 }
+.closeButton{
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+}

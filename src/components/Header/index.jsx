@@ -6,7 +6,9 @@ import {
   LogoMobileIcon,
   VerticalEllipsisIcon
 } from '../Icons'
+
 import styles from './styles.module.css'
+
 export default function Header () {
   const boardsId = useId()
   const optionsId = useId()
