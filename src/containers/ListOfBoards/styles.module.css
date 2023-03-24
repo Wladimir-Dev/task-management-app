@@ -20,23 +20,31 @@
   list-style: none;
   width: 100%;
 }
+
 .listOfBoards ul li {
   padding: 1.2rem 1.5rem 1.2rem 0;
   font-size: 1.7rem;
   font-weight: 600;
   text-transform: capitalize;
-  background-color: var(--darkBlue);
-  border-top-right-radius: 3rem;
-  border-bottom-right-radius: 3rem;
+  color: var(--mediumGray);
   position: relative;
   margin-bottom: 0.5rem;
   z-index: 1;
 }
 .listOfBoards ul li > svg {
   margin-right: 1rem;
-  fill: white;
+  fill: var(--mediumGray);
 }
-.listOfBoards ul li::before {
+.boardActive {
+  background-color: var(--darkBlue);
+  border-top-right-radius: 3rem;
+  border-bottom-right-radius: 3rem;
+  color: white !important;
+}
+.boardActive > svg {
+  fill: white !important;
+}
+.boardActive::before {
   content: '';
   position: absolute;
   background-color: var(--darkBlue);
@@ -66,8 +74,8 @@
 }
 .footer > button > span {
   position: absolute;
-  top: .3rem;
-  left: .6rem;
+  top: 0.3rem;
+  left: 0.6rem;
   background-color: white;
   width: 1.5rem;
   height: 1.5rem;

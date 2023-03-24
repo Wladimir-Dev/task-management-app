@@ -1,5 +1,6 @@
-import React, { useId } from 'react'
+import React, { useId, useRef } from 'react'
 import { ListOfBoards } from '../../containers/ListOfBoards'
+import { useTask } from '../../hooks/useTask'
 import {
   AddTaskMobileIcon,
   ChevronDownIcon,
@@ -10,21 +11,26 @@ import {
 import styles from './styles.module.css'
 
 export default function Header () {
+  const { currentBoard } = useTask()
   const boardsId = useId()
   const optionsId = useId()
+  const refCheckBoards = useRef()
 
+  const closeListBoards = () => {
+    refCheckBoards.current.checked = false
+  }
   return (
     <header className={styles.header}>
       <figure>
         <LogoMobileIcon />
       </figure>
       <label htmlFor={boardsId} className={`${styles.boardName}`}>
-        Platform Launch
+        {currentBoard}
         <ChevronDownIcon />
       </label>
-      <input type='checkbox' id={boardsId} hidden />
+      <input ref={refCheckBoards} type='checkbox' id={boardsId} hidden />
       <div className={styles.containerBoards}>
-        <ListOfBoards />
+        <ListOfBoards closeWindow={closeListBoards} />
       </div>
       <button type='button' className={styles.addButton}>
         <AddTaskMobileIcon />

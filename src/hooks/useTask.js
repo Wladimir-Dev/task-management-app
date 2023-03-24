@@ -2,6 +2,6 @@ import { useContext } from 'react'
 import { BoardContext } from '../context/BoardContext'
 
 export const useTask = () => {
-  const { boards, setBoards } = useContext(BoardContext)
-  return { boards, setBoards }
+  const { boards, setBoards, currentBoard, setCurrentBoard } = useContext(BoardContext)
+  return { boards, setBoards, currentBoard, setCurrentBoard }
 }
