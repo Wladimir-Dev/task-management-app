@@ -1,0 +1,36 @@
+.listOfTask {
+  color: white;
+  /* background-color: blueviolet; */
+  min-width: 27rem;
+  height: 100vh;
+}
+.header {
+  display: flex;
+  column-gap: 1rem;
+  align-items: center;
+}
+.header h2{
+    text-transform: uppercase;
+    color: var(--mediumGray);
+    font-size: 1.2rem;
+    letter-spacing: .5rem;
+}
+.header :nth-child(1) {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: aqua;
+  border-radius: 50%;
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  margin-top: 2rem;
+  height: 100%;
+}
+.listEmpty{
+    border: 1px dashed var(--mediumGray);
+    border-width: 2px;
+    border-radius: 0.8rem;
+
+}

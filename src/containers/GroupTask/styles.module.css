@@ -1,0 +1,7 @@
+.groupTask{
+    display: flex;
+    overflow: auto;
+    scroll-snap-type: mandatory;
+    column-gap: 5rem;
+    padding: 3rem;
+}
