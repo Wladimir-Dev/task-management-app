@@ -14,6 +14,7 @@ export const FormTask = ({ showWindow }) => {
   const generarId = () => {
     return Math.random()
   }
+
   const handleDeleteRow = (id) => {
     let aux = [...subTasks]
 
@@ -31,6 +32,7 @@ export const FormTask = ({ showWindow }) => {
   const handleClose = () => {
     showWindow(false)
   }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     const columnId = e.target.statusSelectId.value
@@ -43,6 +45,7 @@ export const FormTask = ({ showWindow }) => {
     const indexColumn = currentBoard.columns.findIndex(
       (column) => column.id.toString() === columnId.toString()
     )
+
     const objAux = {
       id: generarId(),
       title: e.target.titleId.value,
@@ -51,6 +54,7 @@ export const FormTask = ({ showWindow }) => {
       statusId: columnId,
       subtasks: auxSubTasks
     }
+
     createTask({ idBoard: currentBoard.id, indexColumn, task: objAux })
     handleClose()
   }

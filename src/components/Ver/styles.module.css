@@ -1,0 +1,8 @@
+.ver {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.114);
+  color: white;
+  bottom: 0;
+  left: 0;
+  scroll-snap-type: x mandatory;
+}

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useRef } from 'react'
+import React, { createContext, useState } from 'react'
 import data from '../mocks/data.json'
 
 export const BoardContext = createContext()

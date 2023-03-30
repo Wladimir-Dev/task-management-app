@@ -22,6 +22,45 @@ export const useTask = () => {
     auxBoards[index].columns[indexColumn].tasks.push(task)
     setBoards(auxBoards)
   }
+
+  const updateTask = ({
+    idColumn,
+    idTask,
+    subTasks,
+    idNewColumn = undefined,
+    newTask
+  }) => {
+    const index = boards.findIndex(
+      (oldBoard) => oldBoard.id === currentBoard.id
+    )
+
+    const indexColumn = boards[index].columns.findIndex(
+      (column) => column.id == idColumn
+    )
+    const auxBoards = [...boards]
+    if (idNewColumn) {
+      // mover todo el task a otra columna
+      auxBoards[index].columns[indexColumn].tasks = boards[index].columns[
+        indexColumn
+      ].tasks.filter((task) => task.id != idTask)
+
+      const indexNewColumn = boards[index].columns.findIndex(
+        (column) => column.id == idNewColumn
+      )
+
+      newTask.statusId = idNewColumn
+      newTask.status = auxBoards[index].columns[indexNewColumn].name
+
+      auxBoards[index].columns[indexNewColumn].tasks.push(newTask)
+    } else {
+      // actualizamos solo el task
+      const indexTask = boards[index].columns[indexColumn].tasks.findIndex(
+        (task) => task.id == idTask
+      )
+      auxBoards[index].columns[indexColumn].tasks[indexTask].subtasks = subTasks
+    }
+    setBoards(auxBoards)
+  }
   return {
     boards,
     setBoards,
@@ -29,6 +68,7 @@ export const useTask = () => {
     setCurrentBoard,
     updateBoard,
     createBoard,
-    createTask
+    createTask,
+    updateTask
   }
 }

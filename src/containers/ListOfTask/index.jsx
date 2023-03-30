@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import { CardTask } from '../../components/CardTask'
+import { Task } from '../../components/Task'
+
 import styles from './styles.module.css'
+
 export const ListOfTask = ({ column }) => {
+  const [showTask, setShowTask] = useState(false)
+  const taskRef = useRef()
+  const handleClickCard = (task) => {
+    setShowTask(true)
+    taskRef.current = task
+  }
+
   return (
     <section className={styles.listOfTask}>
       <section className={styles.header}>
@@ -16,9 +26,12 @@ export const ListOfTask = ({ column }) => {
         }`}
       >
         {column.tasks.map((task) => (
-          <CardTask key={task.id} title={task.title} subTasks={task.subtasks} />
+          <div key={task.id} onClick={() => handleClickCard(task)}>
+            <CardTask title={task.title} subTasks={task.subtasks} />
+          </div>
         ))}
       </section>
+      {showTask && <Task task={taskRef.current} showWindow={setShowTask} />}
     </section>
   )
 }
