@@ -2,22 +2,24 @@ import React, { useId, useRef, useState } from 'react'
 import { ListOfBoards } from '../../containers/ListOfBoards'
 import { useTask } from '../../hooks/useTask'
 import { FormBoard } from '../FormBoard'
+import { FormTask } from '../FormTask'
 import {
   AddTaskMobileIcon,
   ChevronDownIcon,
   LogoMobileIcon,
-  VerticalEllipsisIcon
+  VerticalEllipsisIcon,
 } from '../Icons'
 
 import styles from './styles.module.css'
 
-export default function Header () {
+export default function Header() {
   const { currentBoard } = useTask()
   const boardsId = useId()
   const optionsId = useId()
   const refCheckBoards = useRef()
   const refCheckOptions = useRef()
   const [showEditBoard, setShowEditBoard] = useState(false)
+  const [showNewTask, setShowNewTask] = useState(false)
 
   const closeListBoards = () => {
     refCheckBoards.current.checked = false
@@ -25,6 +27,9 @@ export default function Header () {
   const handleEditBoard = () => {
     setShowEditBoard(true)
     refCheckOptions.current.checked = false
+  }
+  const handleAddTask = () => {
+    setShowNewTask(true)
   }
   return (
     <header className={styles.header}>
@@ -39,7 +44,11 @@ export default function Header () {
       <div className={styles.containerBoards}>
         <ListOfBoards closeWindow={closeListBoards} />
       </div>
-      <button type='button' className={styles.addButton}>
+      <button
+        type='button'
+        className={styles.addButton}
+        onClick={handleAddTask}
+      >
         <AddTaskMobileIcon />
       </button>
       <label htmlFor={optionsId} className={styles.optionIcon}>
@@ -52,7 +61,10 @@ export default function Header () {
         </button>
         <button type='button'>Delete Board</button>
       </div>
-      {showEditBoard && <FormBoard showWindow={setShowEditBoard} board={currentBoard} />}
+      {showEditBoard && (
+        <FormBoard showWindow={setShowEditBoard} board={currentBoard} />
+      )}
+      {showNewTask && <FormTask showWindow={setShowNewTask} />}
     </header>
   )
 }

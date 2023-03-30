@@ -12,9 +12,9 @@ export const GroupTask = () => {
       {currentBoard.columns.map((column) => (
         <ListOfTask key={column.id} column={column} />
       ))}
-      <section>
-        new column
-      </section>
+      <button className={styles.newColumn}>
+        + new column
+      </button>
     </section>
   )
 }

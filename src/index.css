@@ -19,6 +19,7 @@
     rgba(130, 143, 163, 0.1),
     rgba(130, 143, 163, 0)
   );
+  
   --darkBlueOpacity: rgba(99, 95, 199, 0.25);
 }
 * {
@@ -31,7 +32,7 @@ html {
   font-size: 62.5%;
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
-fieldset,button,input    {
+fieldset,button,input,textarea,select    {
   border-style: none;
   background-color: transparent;
 }

@@ -1,7 +1,28 @@
-.groupTask{
-    display: flex;
-    overflow: auto;
-    scroll-snap-type: mandatory;
-    column-gap: 5rem;
-    padding: 3rem;
+.groupTask {
+  display: flex;
+  overflow: auto;
+  scroll-snap-type: x mandatory;
+  column-gap: 5rem;
+  padding: 3rem;
+}
+.newColumn {
+  color: white;
+  min-width: 27rem;
+  height: 100vh;
+  text-transform: capitalize;
+  margin-top: 3.5rem;
+  font-family: inherit;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--mediumGray);
+  background: linear-gradient(
+    to bottom,
+    rgba(121, 132, 147, 0.2),
+    rgba(130, 143, 163, 0.1),
+    rgba(130, 143, 163, 0)
+  );
+  
+}
+.newColumn:hover{
+    color: var(--darkBlue);
 }

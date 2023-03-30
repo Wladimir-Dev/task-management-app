@@ -2,6 +2,7 @@
   color: white;
   /* background-color: blueviolet; */
   min-width: 27rem;
+  max-width: 27rem;
   height: 100vh;
 }
 .header {

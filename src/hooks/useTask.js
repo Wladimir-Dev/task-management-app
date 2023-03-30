@@ -16,13 +16,19 @@ export const useTask = () => {
     const auxBoards = [...boards, newBoard]
     setBoards(auxBoards)
   }
-
+  const createTask = ({ idBoard, indexColumn, task }) => {
+    const index = boards.findIndex((oldBoard) => oldBoard.id === idBoard)
+    const auxBoards = [...boards]
+    auxBoards[index].columns[indexColumn].tasks.push(task)
+    setBoards(auxBoards)
+  }
   return {
     boards,
     setBoards,
     currentBoard,
     setCurrentBoard,
     updateBoard,
-    createBoard
+    createBoard,
+    createTask
   }
 }

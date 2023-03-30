@@ -30,6 +30,8 @@
   position: absolute;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.144);
+  transition: 0.3s;
+
 }
 .containerOptions {
   display: none;
