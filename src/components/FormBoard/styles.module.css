@@ -14,13 +14,15 @@
 }
 .newBoard h2 {
   font-size: 2rem;
+  
 }
 .newBoard label {
   font-size: 1.2rem;
   font-weight: 500;
 }
-.newBoard :is(h2, label) {
+.newBoard :is(h2, label, .blueButton) {
   text-transform: capitalize;
+  color: white;
 }
 .newBoard > fieldset {
   display: flex;
@@ -50,6 +52,7 @@
   width: 100%;
   padding: 1.5rem;
   border-radius: 2rem;
+  text-transform: capitalize;
 }
 .whiteButton {
   background-color: white;
@@ -57,10 +60,12 @@
 }
 .blueButton {
   background-color: var(--darkBlue);
-  color: white;
 }
 .closeButton{
   position: absolute;
   top: 1.2rem;
   right: 1.2rem;
+}
+.disable{
+  opacity: .6;
 }

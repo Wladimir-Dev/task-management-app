@@ -1,16 +1,20 @@
 import React, { useId, useRef, useState } from 'react'
+
 import { useTask } from '../../hooks/useTask'
 import { CloseIcon, VerticalEllipsisIcon } from '../Icons'
+import { FormTask } from '../FormTask'
 
 import styles from './styles.module.css'
-import { FormTask } from '../FormTask'
 
 export const Task = ({ task, showWindow }) => {
   const selectId = useId()
   const optionsId = useId()
-  const refCheckOptions = useRef()
+
   const { currentBoard, updateTask } = useTask()
+
+  const refCheckOptions = useRef()
   const currentSelect = useRef(task.statusId)
+
   const [showEdit, setShowEdit] = useState(false)
 
   const nCompleted = task.subtasks.filter((subTask) => subTask.isCompleted)
@@ -19,6 +23,7 @@ export const Task = ({ task, showWindow }) => {
   const handleClose = () => {
     showWindow(false)
   }
+
   const handleSelect = (e) => {
     if (currentSelect.current.toString() === e.target.value.toString()) return
 
@@ -30,12 +35,16 @@ export const Task = ({ task, showWindow }) => {
       newTask: task
     })
   }
+
   const handleCheck = (idInput) => {
     const inputRef = document.getElementById(idInput)
+
     const indexSubTask = task.subtasks.findIndex(
       (subtask) => subtask.title === idInput
     )
+
     task.subtasks[indexSubTask].isCompleted = inputRef.checked
+
     updateTask({
       idColumn: task.statusId,
       idTask: task.id,

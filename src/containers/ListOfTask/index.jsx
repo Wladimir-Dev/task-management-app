@@ -11,7 +11,6 @@ export const ListOfTask = ({ column }) => {
     setShowTask(true)
     taskRef.current = task
   }
-
   return (
     <section className={styles.listOfTask}>
       <section className={styles.header}>
@@ -22,7 +21,7 @@ export const ListOfTask = ({ column }) => {
       </section>
       <section
         className={`${styles.body} ${
-          column.tasks.length === 0 && styles.listEmpty
+          column.tasks.length == 0 && styles.listEmpty
         }`}
       >
         {column.tasks.map((task) => (

@@ -5,11 +5,13 @@ export const useTask = () => {
   const { boards, setBoards, currentBoard, setCurrentBoard } =
     useContext(BoardContext)
 
-  const updateBoard = ({ idNewBoard, nameBoard, columnsBoard }) => {
+  const updateBoard = (idNewBoard, nameBoard, columnsBoard) => {
     const index = boards.findIndex((oldBoard) => oldBoard.id === idNewBoard)
     const auxBoards = [...boards]
+    console.log(auxBoards[index])
     auxBoards[index].name = nameBoard
     auxBoards[index].columns = columnsBoard
+    console.log(auxBoards[index])
     setBoards(auxBoards)
   }
 
@@ -35,11 +37,13 @@ export const useTask = () => {
     )
     return { index, indexColumn }
   }
+
   const searchIndexTask = (index, indexColumn, idTask) => {
     return boards[index].columns[indexColumn].tasks.findIndex(
       (Task) => Task.id.toString() === idTask.toString()
     )
   }
+
   const updateColumn = (index, indexColumn, idTask, idNewColumn) => {
     const updatedTasks = boards[index].columns[indexColumn].tasks.filter(
       (Task) => Task.id.toString() !== idTask.toString()
@@ -82,7 +86,7 @@ export const useTask = () => {
     idTask,
     subTasks,
     idNewColumn = undefined,
-    newTask
+    newTask,
   }) => {
     const { index, indexColumn } = searchColumn(idColumn)
     const auxBoards = [...boards]
@@ -119,6 +123,6 @@ export const useTask = () => {
     createBoard,
     createTask,
     updateTask,
-    editTask
+    editTask,
   }
 }
