@@ -29,6 +29,7 @@
 }
 .newTask textarea {
   height: 9rem;
+  font-family: inherit;
 }
 .newTask :is(input, textarea, select) {
   outline: none;

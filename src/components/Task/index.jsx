@@ -1,12 +1,17 @@
-import React, { useId, useRef } from 'react'
+import React, { useId, useRef, useState } from 'react'
 import { useTask } from '../../hooks/useTask'
 import { CloseIcon, VerticalEllipsisIcon } from '../Icons'
 
 import styles from './styles.module.css'
+import { FormTask } from '../FormTask'
+
 export const Task = ({ task, showWindow }) => {
   const selectId = useId()
+  const optionsId = useId()
+  const refCheckOptions = useRef()
   const { currentBoard, updateTask } = useTask()
   const currentSelect = useRef(task.statusId)
+  const [showEdit, setShowEdit] = useState(false)
 
   const nCompleted = task.subtasks.filter((subTask) => subTask.isCompleted)
   const nSubtasks = task.subtasks.length
@@ -38,14 +43,25 @@ export const Task = ({ task, showWindow }) => {
     })
   }
 
+  const handleEditBoard = () => {
+    setShowEdit(true)
+  }
+
   return (
     <section className={styles.task}>
       <form>
         <div className={styles.header}>
           <h2>{task.title}</h2>
-          <button type='button'>
+          <label htmlFor={optionsId} className={styles.optionIcon}>
             <VerticalEllipsisIcon />
-          </button>
+          </label>
+          <input ref={refCheckOptions} type='checkbox' id={optionsId} hidden />
+          <div className={styles.containerOptions}>
+            <button type='button' onClick={handleEditBoard}>
+              Edit Task
+            </button>
+            <button type='button'>Delete Task</button>
+          </div>
         </div>
         <p>{task.description === '' ? 'sin descripción' : task.description}</p>
         <fieldset>
@@ -75,7 +91,7 @@ export const Task = ({ task, showWindow }) => {
               <option
                 key={column.id}
                 value={column.id}
-                selected={column.id == task.statusId}
+                selected={column.id.toString() === task.statusId.toString()}
               >
                 {column.name}
               </option>
@@ -90,6 +106,7 @@ export const Task = ({ task, showWindow }) => {
       >
         <CloseIcon />
       </button>
+      {showEdit && <FormTask showWindow={setShowEdit} task={task} />}
     </section>
   )
 }

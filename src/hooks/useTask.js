@@ -12,15 +12,65 @@ export const useTask = () => {
     auxBoards[index].columns = columnsBoard
     setBoards(auxBoards)
   }
+
   const createBoard = (newBoard) => {
     const auxBoards = [...boards, newBoard]
     setBoards(auxBoards)
   }
+
   const createTask = ({ idBoard, indexColumn, task }) => {
     const index = boards.findIndex((oldBoard) => oldBoard.id === idBoard)
+
     const auxBoards = [...boards]
     auxBoards[index].columns[indexColumn].tasks.push(task)
     setBoards(auxBoards)
+  }
+  const searchColumn = (idColumn) => {
+    const index = boards.findIndex(
+      (oldBoard) => oldBoard.id === currentBoard.id
+    )
+    const indexColumn = boards[index].columns.findIndex(
+      (column) => column.id.toString() === idColumn.toString()
+    )
+    return { index, indexColumn }
+  }
+
+  const updateColumn = (index, indexColumn, idTask, idNewColumn) => {
+    const newTasks = boards[index].columns[indexColumn].tasks.filter(
+      (Task) => Task.id.toString() !== idTask.toString()
+    )
+
+    const indexNewColumn = boards[index].columns.findIndex(
+      (column) => column.id.toString() === idNewColumn.toString()
+    )
+    return { newTasks, indexNewColumn }
+  }
+
+  const editTask = ({ idOldColumn, task }) => {
+    const auxBoards = [...boards]
+
+    const { index, indexColumn } = searchColumn(idOldColumn)
+
+    if (idOldColumn.toString() !== task.statusId.toString()) {
+      // muevo columna
+      const { newTasks, indexNewColumn } = updateColumn(
+        index,
+        indexColumn,
+        task.id,
+        task.statusId
+      )
+
+      auxBoards[index].columns[indexColumn].tasks = newTasks
+      auxBoards[index].columns[indexNewColumn].tasks.push(task)
+
+      setBoards(auxBoards)
+    } else {
+      const indexTask = auxBoards[index].columns[indexColumn].tasks.findIndex(
+        (Task) => Task.id.toString() === task.id.toString()
+      )
+      auxBoards[index].columns[indexColumn].tasks[indexTask] = task
+      setBoards(auxBoards)
+    }
   }
 
   const updateTask = ({
@@ -28,39 +78,35 @@ export const useTask = () => {
     idTask,
     subTasks,
     idNewColumn = undefined,
-    newTask
+    newTask,
   }) => {
-    const index = boards.findIndex(
-      (oldBoard) => oldBoard.id === currentBoard.id
-    )
-
-    const indexColumn = boards[index].columns.findIndex(
-      (column) => column.id == idColumn
-    )
+    const { index, indexColumn } = searchColumn(idColumn)
     const auxBoards = [...boards]
+
     if (idNewColumn) {
       // mover todo el task a otra columna
-      auxBoards[index].columns[indexColumn].tasks = boards[index].columns[
-        indexColumn
-      ].tasks.filter((task) => task.id != idTask)
-
-      const indexNewColumn = boards[index].columns.findIndex(
-        (column) => column.id == idNewColumn
+      const { newTasks, indexNewColumn } = updateColumn(
+        index,
+        indexColumn,
+        idTask,
+        idNewColumn
       )
+      auxBoards[index].columns[indexColumn].tasks = newTasks
 
       newTask.statusId = idNewColumn
       newTask.status = auxBoards[index].columns[indexNewColumn].name
 
       auxBoards[index].columns[indexNewColumn].tasks.push(newTask)
     } else {
-      // actualizamos solo el task
+      // actualizamos solo el substasks
       const indexTask = boards[index].columns[indexColumn].tasks.findIndex(
-        (task) => task.id == idTask
+        (task) => task.id.toString() === idTask.toString()
       )
       auxBoards[index].columns[indexColumn].tasks[indexTask].subtasks = subTasks
     }
     setBoards(auxBoards)
   }
+
   return {
     boards,
     setBoards,
@@ -69,6 +115,7 @@ export const useTask = () => {
     updateBoard,
     createBoard,
     createTask,
-    updateTask
+    updateTask,
+    editTask,
   }
 }
