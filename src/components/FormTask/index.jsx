@@ -19,7 +19,7 @@ export const FormTask = ({ showWindow, task = undefined }) => {
       return {
         id: generarId(),
         title: item.title,
-        isCompleted: item.isCompleted,
+        isCompleted: item.isCompleted
       }
     })
   }
