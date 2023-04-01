@@ -14,7 +14,11 @@ export const useTask = () => {
     console.log(auxBoards[index])
     setBoards(auxBoards)
   }
-
+  const deleteBoard = () => {
+    const auxBoards = boards.filter((board) => board.id != currentBoard.id)
+    setCurrentBoard(auxBoards[0])
+    setBoards(auxBoards)
+  }
   const createBoard = (newBoard) => {
     const auxBoards = [...boards, newBoard]
     setBoards(auxBoards)
@@ -135,5 +139,6 @@ export const useTask = () => {
     updateTask,
     editTask,
     deleteTask,
+    deleteBoard,
   }
 }

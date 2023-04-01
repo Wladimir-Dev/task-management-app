@@ -13,7 +13,7 @@ import {
 import styles from './styles.module.css'
 
 export default function Header() {
-  const { currentBoard } = useTask()
+  const { currentBoard, deleteBoard } = useTask()
   const boardsId = useId()
   const optionsId = useId()
   const refCheckBoards = useRef()
@@ -30,6 +30,10 @@ export default function Header() {
   }
   const handleAddTask = () => {
     setShowNewTask(true)
+  }
+  const handleDeleteBoard = () => {
+    deleteBoard()
+    refCheckOptions.current.checked = false
   }
   return (
     <header className={styles.header}>
@@ -59,7 +63,9 @@ export default function Header() {
         <button type='button' onClick={handleEditBoard}>
           Edit Board
         </button>
-        <button type='button'>Delete Board</button>
+        <button type='button' onClick={handleDeleteBoard}>
+          Delete Board
+        </button>
       </div>
       {showEditBoard && (
         <FormBoard showWindow={setShowEditBoard} board={currentBoard} />

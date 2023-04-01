@@ -32,7 +32,7 @@ export const Task = ({ task, showWindow }) => {
       idColumn: task.statusId,
       idTask: task.id,
       idNewColumn: e.target.value,
-      newTask: task,
+      newTask: task
     })
   }
 
@@ -48,7 +48,7 @@ export const Task = ({ task, showWindow }) => {
     updateTask({
       idColumn: task.statusId,
       idTask: task.id,
-      subTasks: task.subtasks,
+      subTasks: task.subtasks
     })
   }
 
