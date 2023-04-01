@@ -10,7 +10,7 @@ export const Task = ({ task, showWindow }) => {
   const selectId = useId()
   const optionsId = useId()
 
-  const { currentBoard, updateTask } = useTask()
+  const { currentBoard, updateTask, deleteTask } = useTask()
 
   const refCheckOptions = useRef()
   const currentSelect = useRef(task.statusId)
@@ -32,7 +32,7 @@ export const Task = ({ task, showWindow }) => {
       idColumn: task.statusId,
       idTask: task.id,
       idNewColumn: e.target.value,
-      newTask: task
+      newTask: task,
     })
   }
 
@@ -48,12 +48,16 @@ export const Task = ({ task, showWindow }) => {
     updateTask({
       idColumn: task.statusId,
       idTask: task.id,
-      subTasks: task.subtasks
+      subTasks: task.subtasks,
     })
   }
 
-  const handleEditBoard = () => {
+  const handleEditTask = () => {
     setShowEdit(true)
+  }
+  const handleDeleteTask = () => {
+    deleteTask({ task })
+    handleClose()
   }
 
   return (
@@ -66,10 +70,12 @@ export const Task = ({ task, showWindow }) => {
           </label>
           <input ref={refCheckOptions} type='checkbox' id={optionsId} hidden />
           <div className={styles.containerOptions}>
-            <button type='button' onClick={handleEditBoard}>
+            <button type='button' onClick={handleEditTask}>
               Edit Task
             </button>
-            <button type='button'>Delete Task</button>
+            <button type='button' onClick={handleDeleteTask}>
+              Delete Task
+            </button>
           </div>
         </div>
         <p>{task.description === '' ? 'sin descripción' : task.description}</p>
