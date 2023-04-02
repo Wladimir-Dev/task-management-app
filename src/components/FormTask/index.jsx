@@ -4,7 +4,11 @@ import { CloseIcon } from '../Icons'
 
 import styles from './styles.module.css'
 
-export const FormTask = ({ showWindow, task = undefined }) => {
+export const FormTask = ({
+  showWindow,
+  task = undefined,
+  closeWindowFather
+}) => {
   const titleId = useId()
   const descriptionId = useId()
   const statusSelectId = useId()
@@ -19,7 +23,7 @@ export const FormTask = ({ showWindow, task = undefined }) => {
       return {
         id: generarId(),
         title: item.title,
-        isCompleted: item.isCompleted
+        isCompleted: item.isCompleted,
       }
     })
   }
@@ -43,6 +47,7 @@ export const FormTask = ({ showWindow, task = undefined }) => {
 
   const handleClose = () => {
     showWindow(false)
+    closeWindowFather && closeWindowFather()
   }
 
   const handleSubmit = (e) => {
@@ -51,7 +56,7 @@ export const FormTask = ({ showWindow, task = undefined }) => {
 
     const auxSubTasks = subTasks.map((subTask) => ({
       title: document.getElementById(subTask.id).value,
-      isCompleted: subTask.isCompleted || false
+      isCompleted: subTask.isCompleted || false,
     }))
 
     const indexColumn = currentBoard.columns.findIndex(
@@ -72,7 +77,7 @@ export const FormTask = ({ showWindow, task = undefined }) => {
         description: e.target.descriptionId.value,
         status: currentBoard.columns[indexColumn].name,
         statusId: columnId,
-        subtasks: auxSubTasks
+        subtasks: auxSubTasks,
       }
 
       createTask({ idBoard: currentBoard.id, indexColumn, task: objAux })

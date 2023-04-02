@@ -1,4 +1,5 @@
 import React, { useId, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { ListOfBoards } from '../../containers/ListOfBoards'
 import { useTask } from '../../hooks/useTask'
 import { FormBoard } from '../FormBoard'
@@ -67,10 +68,13 @@ export default function Header() {
           Delete Board
         </button>
       </div>
-      {showEditBoard && (
-        <FormBoard showWindow={setShowEditBoard} board={currentBoard} />
-      )}
-      {showNewTask && <FormTask showWindow={setShowNewTask} />}
+      {showEditBoard &&
+        createPortal(
+          <FormBoard showWindow={setShowEditBoard} board={currentBoard} />,
+          document.body
+        )}
+      {showNewTask &&
+        createPortal(<FormTask showWindow={setShowNewTask} />, document.body)}
     </header>
   )
 }

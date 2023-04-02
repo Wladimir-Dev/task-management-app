@@ -1,4 +1,5 @@
 import React, { useId, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 
 import { useTask } from '../../hooks/useTask'
 import { CloseIcon, VerticalEllipsisIcon } from '../Icons'
@@ -121,7 +122,11 @@ export const Task = ({ task, showWindow }) => {
       >
         <CloseIcon />
       </button>
-      {showEdit && <FormTask showWindow={setShowEdit} task={task} />}
+      {showEdit &&
+        createPortal(
+          <FormTask showWindow={setShowEdit} task={task} closeWindowFather={handleClose} />,
+          document.body
+        )}
     </section>
   )
 }

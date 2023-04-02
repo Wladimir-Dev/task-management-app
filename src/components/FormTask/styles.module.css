@@ -21,6 +21,7 @@
 }
 .newTask :is(h2, label) {
   text-transform: capitalize;
+  color: white;
 }
 .newTask > fieldset {
   display: flex;

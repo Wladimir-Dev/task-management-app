@@ -3,6 +3,7 @@ import { CardTask } from '../../components/CardTask'
 import { Task } from '../../components/Task'
 
 import styles from './styles.module.css'
+import { createPortal } from 'react-dom'
 
 export const ListOfTask = ({ column }) => {
   const [showTask, setShowTask] = useState(false)
@@ -30,7 +31,11 @@ export const ListOfTask = ({ column }) => {
           </div>
         ))}
       </section>
-      {showTask && <Task task={taskRef.current} showWindow={setShowTask} />}
+      {showTask &&
+        createPortal(
+          <Task task={taskRef.current} showWindow={setShowTask} />,
+          document.body
+        )}
     </section>
   )
 }

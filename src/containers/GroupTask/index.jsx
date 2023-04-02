@@ -4,6 +4,7 @@ import { ListOfTask } from '../ListOfTask'
 import styles from './styles.module.css'
 import React, { useState } from 'react'
 import { FormBoard } from '../../components/FormBoard'
+import { createPortal } from 'react-dom'
 
 export const GroupTask = () => {
   const { currentBoard } = useTask()
@@ -21,13 +22,15 @@ export const GroupTask = () => {
       >
         + new column
       </button>
-      {showNewColumn && (
-        <FormBoard
-          showWindow={setShowNewColumn}
-          board={currentBoard}
-          newColumn
-        />
-      )}
+      {showNewColumn &&
+        createPortal(
+          <FormBoard
+            showWindow={setShowNewColumn}
+            board={currentBoard}
+            newColumn
+          />,
+          document.body
+        )}
     </section>
   )
 }
