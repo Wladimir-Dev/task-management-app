@@ -1,0 +1,26 @@
+@media only screen and (min-width: 768px) {
+  .groupTask {
+    /* overflow: unset; */
+    /* position: absolute;
+        left: 30rem;
+        top: 10rem; */
+  }
+  .groupTask::-webkit-scrollbar {
+    height: 0.8rem;
+    width: 0.8rem;
+  }
+  .groupTask::-webkit-scrollbar-corner {
+    background: var(--darkBlue);
+  }
+  .groupTask::-webkit-scrollbar-thumb {
+    background: var(--darkGrayLine);
+    border-radius: 10px;
+  }
+  .groupTask::-webkit-scrollbar-thumb:hover {
+    background-color: var(--darkBlue);
+  }
+  .groupTask::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+}

@@ -6,6 +6,7 @@ import { CloseIcon, VerticalEllipsisIcon } from '../Icons'
 import { FormTask } from '../FormTask'
 
 import styles from './styles.module.css'
+import tablet from './tablet.module.css'
 
 export const Task = ({ task, showWindow }) => {
   const selectId = useId()
@@ -33,7 +34,7 @@ export const Task = ({ task, showWindow }) => {
       idColumn: task.statusId,
       idTask: task.id,
       idNewColumn: e.target.value,
-      newTask: task
+      newTask: task,
     })
   }
 
@@ -49,7 +50,7 @@ export const Task = ({ task, showWindow }) => {
     updateTask({
       idColumn: task.statusId,
       idTask: task.id,
-      subTasks: task.subtasks
+      subTasks: task.subtasks,
     })
   }
 
@@ -62,8 +63,8 @@ export const Task = ({ task, showWindow }) => {
   }
 
   return (
-    <section className={styles.task}>
-      <form>
+    <section className={`${tablet.containerForm}`}>
+      <form className={`${styles.task} ${tablet.task}`}>
         <div className={styles.header}>
           <h2>{task.title}</h2>
           <label htmlFor={optionsId} className={styles.optionIcon}>
@@ -117,14 +118,18 @@ export const Task = ({ task, showWindow }) => {
       </form>
       <button
         type='button'
-        className={styles.closeButton}
+        className={`${styles.closeButton} ${tablet.closeButton}`}
         onClick={handleClose}
       >
         <CloseIcon />
       </button>
       {showEdit &&
         createPortal(
-          <FormTask showWindow={setShowEdit} task={task} closeWindowFather={handleClose} />,
+          <FormTask
+            showWindow={setShowEdit}
+            task={task}
+            closeWindowFather={handleClose}
+          />,
           document.body
         )}
     </section>

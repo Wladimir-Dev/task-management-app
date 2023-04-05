@@ -7,11 +7,13 @@ import { FormTask } from '../FormTask'
 import {
   AddTaskMobileIcon,
   ChevronDownIcon,
+  LogoLightIcon,
   LogoMobileIcon,
   VerticalEllipsisIcon,
 } from '../Icons'
 
 import styles from './styles.module.css'
+import tablet from './tablet.module.css'
 
 export default function Header() {
   const { currentBoard, deleteBoard } = useTask()
@@ -37,36 +39,48 @@ export default function Header() {
     refCheckOptions.current.checked = false
   }
   return (
-    <header className={styles.header}>
-      <figure>
-        <LogoMobileIcon />
-      </figure>
-      <label htmlFor={boardsId} className={`${styles.boardName}`}>
-        {currentBoard.name}
-        <ChevronDownIcon />
-      </label>
-      <input ref={refCheckBoards} type='checkbox' id={boardsId} hidden />
-      <div className={styles.containerBoards}>
-        <ListOfBoards closeWindow={closeListBoards} />
+    <header className={`${styles.header} ${tablet.header}`}>
+      <div className={tablet.headerLeft}>
+        <figure>
+          <LogoMobileIcon />
+        </figure>
+        <figure>
+          <LogoLightIcon />
+        </figure>
       </div>
-      <button
-        type='button'
-        className={styles.addButton}
-        onClick={handleAddTask}
-      >
-        <AddTaskMobileIcon />
-      </button>
-      <label htmlFor={optionsId} className={styles.optionIcon}>
-        <VerticalEllipsisIcon />
-      </label>
-      <input ref={refCheckOptions} type='checkbox' id={optionsId} hidden />
-      <div className={styles.containerOptions}>
-        <button type='button' onClick={handleEditBoard}>
-          Edit Board
-        </button>
-        <button type='button' onClick={handleDeleteBoard}>
-          Delete Board
-        </button>
+      <div className={`${styles.headerRigth} ${tablet.headerRigth}`}>
+        <label className={`${styles.onlyBoardName} ${tablet.onlyBoardName}`}>
+          {currentBoard.name}
+        </label>
+        <label htmlFor={boardsId} className={`${styles.boardName} ${tablet.boardName}`}>
+          {currentBoard.name}
+          <ChevronDownIcon />
+        </label>
+        <input ref={refCheckBoards} type='checkbox' id={boardsId} hidden />
+        <div className={`${styles.containerBoards} ${tablet.containerBoards}`}>
+          <ListOfBoards closeWindow={closeListBoards} />
+        </div>
+        <div className={`${styles.containerAddButton} ${tablet.containerAddButton}`}>
+          <button
+            type='button'
+            className={`${styles.addButton} ${tablet.addButton}`}
+            onClick={handleAddTask}
+          >
+            <AddTaskMobileIcon />
+          </button>
+          <label htmlFor={optionsId} className={styles.optionIcon}>
+            <VerticalEllipsisIcon />
+          </label>
+          <input ref={refCheckOptions} type='checkbox' id={optionsId} hidden />
+          <div className={styles.containerOptions}>
+            <button type='button' onClick={handleEditBoard}>
+              Edit Board
+            </button>
+            <button type='button' onClick={handleDeleteBoard}>
+              Delete Board
+            </button>
+          </div>
+        </div>
       </div>
       {showEditBoard &&
         createPortal(

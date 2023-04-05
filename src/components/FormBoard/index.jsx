@@ -3,6 +3,7 @@ import { useTask } from '../../hooks/useTask'
 import { CloseIcon } from '../Icons'
 
 import styles from './styles.module.css'
+import tablet from './tablet.module.css'
 
 export const FormBoard = ({
   showWindow,
@@ -20,7 +21,7 @@ export const FormBoard = ({
       const auxColumns = columns.map((column) => {
         return {
           ...column,
-          disable: true
+          disable: true,
         }
       })
       setColumns(auxColumns)
@@ -54,7 +55,7 @@ export const FormBoard = ({
       const auxColumns = columns.map((column) => ({
         id: column.id,
         name: document.getElementById(column.id).value,
-        tasks: column.tasks
+        tasks: column.tasks,
       }))
 
       updateBoard(board.id, e.target.nameId.value, auxColumns)
@@ -62,7 +63,7 @@ export const FormBoard = ({
       const auxColumns = columns.map((column) => ({
         id: column.id,
         name: document.getElementById(column.id).value,
-        tasks: []
+        tasks: [],
       }))
       const objAux = {
         id: 3,
@@ -75,61 +76,66 @@ export const FormBoard = ({
   }
 
   return (
-    <form className={styles.newBoard} onSubmit={handleSubmit}>
-      {board ? <h2>edit board</h2> : <h2>add new board</h2>}
-      <fieldset>
-        <label htmlFor={nameId}>name</label>
-        <input
-          type='text'
-          id={nameId}
-          name='nameId'
-          defaultValue={board && board.name}
-          disabled={newColumn}
-          className={newColumn && styles.disable}
-        />
-      </fieldset>
-      <fieldset>
-        <label htmlFor=''>columns</label>
-        {columns.map((column) => (
-          <div key={column.id} className={styles.containerInput}>
-            <input
-              id={column.id}
-              type='text'
-              defaultValue={column.name}
-              disabled={column.disable}
-              className={column.disable && styles.disable}
-            />
-            {columns.length > 1 && (
-              <button
-                type='button'
+    <section className={`${tablet.containerForm}`}>
+      <form
+        className={`${styles.newBoard} ${tablet.newBoard}`}
+        onSubmit={handleSubmit}
+      >
+        {board ? <h2>edit board</h2> : <h2>add new board</h2>}
+        <fieldset>
+          <label htmlFor={nameId}>name</label>
+          <input
+            type='text'
+            id={nameId}
+            name='nameId'
+            defaultValue={board && board.name}
+            disabled={newColumn}
+            className={newColumn && styles.disable}
+          />
+        </fieldset>
+        <fieldset>
+          <label htmlFor=''>columns</label>
+          {columns.map((column) => (
+            <div key={column.id} className={styles.containerInput}>
+              <input
+                id={column.id}
+                type='text'
+                defaultValue={column.name}
                 disabled={column.disable}
                 className={column.disable && styles.disable}
-                onClick={() => handleDeleteColumn(column.id)}
-              >
-                <CloseIcon />
-              </button>
-            )}
-          </div>
-        ))}
+              />
+              {columns.length > 1 && (
+                <button
+                  type='button'
+                  disabled={column.disable}
+                  className={column.disable && styles.disable}
+                  onClick={() => handleDeleteColumn(column.id)}
+                >
+                  <CloseIcon />
+                </button>
+              )}
+            </div>
+          ))}
+          <button
+            type='button'
+            onClick={handleNewColumn}
+            className={styles.whiteButton}
+          >
+            + Add new Column
+          </button>
+        </fieldset>
+
+        <button type='submit' className={styles.blueButton}>
+          {board ? 'save changes' : 'Create New Board'}
+        </button>
         <button
           type='button'
-          onClick={handleNewColumn}
-          className={styles.whiteButton}
+          className={styles.closeButton}
+          onClick={handleClose}
         >
-          + Add new Column
+          <CloseIcon />
         </button>
-      </fieldset>
-
-      <button type='submit' className={styles.blueButton}>
-        {board ? 'save changes' : 'Create New Board'}
-      </button>
-      <button
-        type='button'
-        className={styles.closeButton}
-        onClick={handleClose}
-      >
-        <CloseIcon />
-      </button>
-    </form>
+      </form>
+    </section>
   )
 }

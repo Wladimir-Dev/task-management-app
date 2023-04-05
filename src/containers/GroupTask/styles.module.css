@@ -1,14 +1,18 @@
 .groupTask {
   display: flex;
-  overflow: auto;
+  overflow: scroll;
   scroll-snap-type: x mandatory;
   column-gap: 5rem;
   padding: 3rem;
+  height: 100%;
+  width: 100%;
 }
+
 .newColumn {
+  scroll-snap-align: center;
+  min-height: 100%;
   color: white;
   min-width: 27rem;
-  height: 100vh;
   text-transform: capitalize;
   margin-top: 3.5rem;
   font-family: inherit;
@@ -21,8 +25,7 @@
     rgba(130, 143, 163, 0.1),
     rgba(130, 143, 163, 0)
   );
-  
 }
-.newColumn:hover{
-    color: var(--darkBlue);
+.newColumn:hover {
+  color: var(--darkBlue);
 }

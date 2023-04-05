@@ -19,24 +19,37 @@
     rgba(130, 143, 163, 0.1),
     rgba(130, 143, 163, 0)
   );
-  
+
   --darkBlueOpacity: rgba(99, 95, 199, 0.25);
 }
-* {
+*,
+*:before,
+*:after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+body {
+  /* min-height: 100vh; */
+  height: 100%;
+  width: 100%;
+  /* background-color: var(--veryDarkGray); */
+  position: relative;
 }
 
 html {
   font-size: 62.5%;
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
-fieldset,button,input,textarea,select    {
+fieldset,
+button,
+input,
+textarea,
+select {
   border-style: none;
   background-color: transparent;
 }
-button{
+button {
   border-radius: 1.5rem;
   cursor: pointer;
 }

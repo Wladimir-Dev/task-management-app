@@ -1,4 +1,4 @@
-.listOfBoards {
+.containerList {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -10,18 +10,19 @@
   border-radius: 0.8rem;
   row-gap: 1.5rem;
 }
-.listOfBoards > span {
+.containerList> div> span {
   font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.5rem;
   color: var(--mediumGray);
 }
-.listOfBoards ul {
+.containerList ul {
   list-style: none;
+  margin-top: 2rem;
   width: 100%;
 }
 
-.listOfBoards ul li {
+.containerList ul li {
   padding: 1.2rem 1.5rem 1.2rem 0;
   font-size: 1.7rem;
   font-weight: 600;
@@ -30,8 +31,9 @@
   position: relative;
   margin-bottom: 0.5rem;
   z-index: 1;
+  cursor: pointer;
 }
-.listOfBoards ul li > svg {
+.containerList ul li > svg {
   margin-right: 1rem;
   fill: var(--mediumGray);
 }
@@ -54,17 +56,18 @@
   left: -2.5rem;
   z-index: -1;
 }
-.footer {
+.footerMode {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  padding: 0 3rem;
+  padding: 0 5rem;
   background-color: var(--veryDarkGray);
   width: 100%;
   height: 5.5rem;
   border-radius: 0.8rem;
+  column-gap: 2rem;
 }
-.footer > button {
+.footerMode > button {
   width: 4.5rem;
   height: 2rem;
   background-color: var(--darkBlue);
@@ -72,7 +75,7 @@
   border-radius: 1rem;
   position: relative;
 }
-.footer > button > span {
+.footerMode > button > span {
   position: absolute;
   top: 0.3rem;
   left: 0.6rem;
@@ -81,4 +84,10 @@
   height: 1.5rem;
   border-radius: 50%;
   display: inline-block;
+}
+.footer> button{
+  display: none;
+}
+.showList{
+  display: none;
 }

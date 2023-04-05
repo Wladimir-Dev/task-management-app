@@ -3,7 +3,8 @@
   /* background-color: blueviolet; */
   min-width: 27rem;
   max-width: 27rem;
-  height: 100vh;
+  height: 100%;
+  scroll-snap-align: center;
 }
 .header {
   display: flex;
@@ -33,5 +34,6 @@
     border: 1px dashed var(--mediumGray);
     border-width: 2px;
     border-radius: 0.8rem;
+    height: 100vh;
 
 }

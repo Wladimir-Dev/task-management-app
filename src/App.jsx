@@ -1,12 +1,12 @@
 import './App.css'
+import { Body } from './components/Body'
 import Header from './components/Header'
-import { GroupTask } from './containers/GroupTask'
 
 function App () {
   return (
     <main className='app'>
       <Header />
-      <GroupTask />
+      <Body />
     </main>
   )
 }
