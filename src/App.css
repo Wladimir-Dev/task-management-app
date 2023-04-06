@@ -1,14 +1,14 @@
 .app {
-  min-width: 32rem;
-  
-  width: 100%;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  height: 100%;
-  overflow: scroll;
-  background-color: var(--veryDarkGray);
   position: relative;
+  width: 100%;
+  min-width: 32rem;
+  height: 100vh;
+  background-color: rebeccapurple;
+  /* min-height: 100vh; */
+  
+  /* background-color: var(--veryDarkGray); */
 
 }
 /* @media only screen and (max-width: 320px) {
