@@ -67,27 +67,34 @@
   border-radius: 0.8rem;
   column-gap: 2rem;
 }
-.footerMode > button {
+.containerSlider{
   width: 4.5rem;
   height: 2rem;
   background-color: var(--darkBlue);
   border-style: none;
   border-radius: 1rem;
   position: relative;
+  cursor: pointer;
 }
-.footerMode > button > span {
+.sliderButton{
   position: absolute;
-  top: 0.3rem;
+  top: 0.2rem;
   left: 0.6rem;
   background-color: white;
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
   display: inline-block;
+  translate: 0;
+  transition: .3s;
 }
+
 .footer> button{
   display: none;
 }
 .showList{
   display: none;
+}
+.guia~ input:checked~ .containerSlider> span{
+  translate: 1.5rem 0;
 }

@@ -17,6 +17,7 @@ export function ListOfBoards ({ closeWindow }) {
   const { boards, currentBoard, setCurrentBoard } = useTask()
   const [showNewBoard, setShowNewBoard] = useState(false)
   const showId = useId()
+  const sliderId = useId()
   const checkRef = useRef(false)
 
   const handleNewBoard = () => {
@@ -61,9 +62,11 @@ export function ListOfBoards ({ closeWindow }) {
         <div className={`${styles.footer} ${tablet.footer}`}>
           <div className={styles.footerMode}>
             <DarkLogoIcon />
-            <button type='button'>
-              <span />
-            </button>
+            <label className={styles.guia}></label>
+            <input type='checkbox' id= {sliderId} hidden/>
+            <label htmlFor= {sliderId} className= {styles.containerSlider}>
+              <span className={styles.sliderButton}/>
+            </label>
             <LightLogoIcon />
           </div>
           <label

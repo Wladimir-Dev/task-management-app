@@ -72,4 +72,5 @@
   .enlazador ~ input:checked ~ .showList {
     display: flex;
   }
+
 }

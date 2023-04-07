@@ -6,9 +6,10 @@ export const BoardContext = createContext()
 export const BoardProvider = ({ children }) => {
   const [boards, setBoards] = useState(data.boards)
   const [currentBoard, setCurrentBoard] = useState(data.boards[0])
+  const [modoLight, setModoLight] = useState(false)
   return (
     <BoardContext.Provider
-      value={{ boards, setBoards, currentBoard, setCurrentBoard }}
+      value={{ boards, setBoards, currentBoard, setCurrentBoard, modoLight, setModoLight}}
     >
       {children}
     </BoardContext.Provider>

@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { BoardContext } from '../context/BoardContext'
 
 export const useTask = () => {
-  const { boards, setBoards, currentBoard, setCurrentBoard } =
+  const { boards, setBoards, currentBoard, setCurrentBoard, modoLight, setModoLight } =
     useContext(BoardContext)
 
   const updateBoard = (idNewBoard, nameBoard, columnsBoard) => {
@@ -140,5 +140,7 @@ export const useTask = () => {
     editTask,
     deleteTask,
     deleteBoard,
+    modoLight,
+    setModoLight
   }
 }
