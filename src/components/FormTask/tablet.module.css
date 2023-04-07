@@ -8,12 +8,12 @@
         z-index: 1;
     }
     .newTask{
-        width: 50%;
+        overflow: auto;
+        width: 40%;
         /* max-width: 50rem; */
         height: 55rem;
-        top: calc(100vh - 90%);
-        left: calc(100vw - 75%);
-        overflow: auto;
+        top: calc(100vh - 95%);
+        left: calc(100vw - 70%);
         border: 1px solid var(--mediumGray);
         border-radius: .8rem;
     }

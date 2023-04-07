@@ -52,6 +52,11 @@
   border-radius: 0.8rem;
   font-weight: 600;
   font-size: 1.2rem;
+  
+}
+.subTask input[type='checkbox'],
+.subTask label{
+  cursor: pointer;
 }
 .subTask input[type='checkbox'] {
   appearance: none;
@@ -60,6 +65,7 @@
   border-radius: 0.2rem;
   border: 1.8px solid #888;
   transition: 0.3s;
+  cursor: pointer;
 }
 .subTask input[type='checkbox']:checked {
   background-color: var(--darkBlue);
@@ -105,6 +111,9 @@
 }
 .containerOptions > :nth-child(2) {
   color: var(--red);
+}
+.optionIcon{
+  cursor: pointer;
 }
 .optionIcon ~ input:checked ~ .containerOptions {
   position: absolute;
