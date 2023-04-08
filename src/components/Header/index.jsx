@@ -1,7 +1,6 @@
 import React, { useId, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { ListOfBoards } from '../../containers/ListOfBoards'
-import { useTask } from '../../hooks/useTask'
 import { FormBoard } from '../FormBoard'
 import { FormTask } from '../FormTask'
 import {
@@ -12,17 +11,21 @@ import {
   VerticalEllipsisIcon,
 } from '../Icons'
 
+import { useBoard } from '../../hooks/useBoard'
+
 import styles from './styles.module.css'
 import tablet from './tablet.module.css'
 
 export default function Header() {
-  const { currentBoard, deleteBoard } = useTask()
+  const [showEditBoard, setShowEditBoard] = useState(false)
+  const [showNewTask, setShowNewTask] = useState(false)
+  
+  const { currentBoard, deleteBoard } = useBoard()
+  
   const boardsId = useId()
   const optionsId = useId()
   const refCheckBoards = useRef()
   const refCheckOptions = useRef()
-  const [showEditBoard, setShowEditBoard] = useState(false)
-  const [showNewTask, setShowNewTask] = useState(false)
 
   const closeListBoards = () => {
     refCheckBoards.current.checked = false

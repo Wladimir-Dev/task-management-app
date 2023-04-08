@@ -1,4 +1,6 @@
-import React, { useState, useId, useRef } from 'react'
+import React, { useState, useId } from 'react'
+import { createPortal } from 'react-dom'
+
 import {
   BoardIcon,
   DarkLogoIcon,
@@ -7,31 +9,35 @@ import {
   ShowSidebarIcon,
 } from '../../components/Icons'
 import { FormBoard } from '../../components/FormBoard'
-import { useTask } from '../../hooks/useTask'
+
+import { useBoard } from '../../hooks/useBoard'
 
 import styles from './styles.module.css'
 import tablet from './tablet.module.css'
-import { createPortal } from 'react-dom'
 
 export function ListOfBoards ({ closeWindow }) {
-  const { boards, currentBoard, setCurrentBoard } = useTask()
   const [showNewBoard, setShowNewBoard] = useState(false)
+  
+  const { boards, currentBoard, setCurrentBoard, modoLight, setModoLight } = useBoard()
+  
   const showId = useId()
   const sliderId = useId()
-  const checkRef = useRef(false)
 
   const handleNewBoard = () => {
     setShowNewBoard(true)
   }
   const handleBoard = (board) => {
     setCurrentBoard(board)
-    closeWindow()
+    closeWindow && closeWindow()
   }
-  console.log(checkRef.current.checked)
+  const handleprueba=()=>{
+    setModoLight(prev=>!prev)
+  }
+
   return (
     <section className={`${tablet.listOfBoards}`}>
       <label className={`${tablet.enlazador}`} />
-      <input type='checkbox' name='' id={showId} hidden ref={checkRef} />
+      <input type='checkbox' name='' id={showId} hidden />
       <label
         htmlFor={showId}
         className={`${styles.showList} ${tablet.showList}`}
@@ -62,8 +68,8 @@ export function ListOfBoards ({ closeWindow }) {
         <div className={`${styles.footer} ${tablet.footer}`}>
           <div className={styles.footerMode}>
             <DarkLogoIcon />
-            <label className={styles.guia}></label>
-            <input type='checkbox' id= {sliderId} hidden/>
+            <label className={styles.guia} hidden />
+            <input type='checkbox' id= {sliderId} defaultChecked={modoLight} onClick={handleprueba} hidden/>
             <label htmlFor= {sliderId} className= {styles.containerSlider}>
               <span className={styles.sliderButton}/>
             </label>

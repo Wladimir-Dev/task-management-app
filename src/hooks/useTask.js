@@ -2,35 +2,9 @@ import { useContext } from 'react'
 import { BoardContext } from '../context/BoardContext'
 
 export const useTask = () => {
-  const { boards, setBoards, currentBoard, setCurrentBoard, modoLight, setModoLight } =
+  const { boards, setBoards, currentBoard, setCurrentBoard} =
     useContext(BoardContext)
 
-  const updateBoard = (idNewBoard, nameBoard, columnsBoard) => {
-    const index = boards.findIndex((oldBoard) => oldBoard.id === idNewBoard)
-    const auxBoards = [...boards]
-    console.log(auxBoards[index])
-    auxBoards[index].name = nameBoard
-    auxBoards[index].columns = columnsBoard
-    console.log(auxBoards[index])
-    setBoards(auxBoards)
-  }
-  const deleteBoard = () => {
-    const auxBoards = boards.filter((board) => board.id != currentBoard.id)
-    setCurrentBoard(auxBoards[0])
-    setBoards(auxBoards)
-  }
-  const createBoard = (newBoard) => {
-    const auxBoards = [...boards, newBoard]
-    setBoards(auxBoards)
-  }
-
-  const createTask = ({ idBoard, indexColumn, task }) => {
-    const index = boards.findIndex((oldBoard) => oldBoard.id === idBoard)
-
-    const auxBoards = [...boards]
-    auxBoards[index].columns[indexColumn].tasks.push(task)
-    setBoards(auxBoards)
-  }
 
   const searchColumn = (idColumn) => {
     const indexBoard = boards.findIndex(
@@ -52,6 +26,7 @@ export const useTask = () => {
       (Task) => Task.id.toString() !== idTask.toString()
     )
   }
+
   const updateColumn = (indexBoard, indexColumn, idTask, idNewColumn) => {
     const updatedTasks = removeTask(indexBoard, indexColumn, idTask)
 
@@ -60,6 +35,27 @@ export const useTask = () => {
     )
     return { updatedTasks, indexNewColumn }
   }
+
+  const initSubtasks = (subtasks) => {
+    return subtasks.map((item) => {
+      return {
+        id: Math.random(),
+        title: item.title,
+        isCompleted: item.isCompleted,
+      }
+    })
+  }
+
+
+
+  const createTask = ({ idBoard, indexColumn, task }) => {
+    const index = boards.findIndex((oldBoard) => oldBoard.id === idBoard)
+
+    const auxBoards = [...boards]
+    auxBoards[index].columns[indexColumn].tasks.push(task)
+    setBoards(auxBoards)
+  }
+
   const deleteTask = ({ task }) => {
     const auxBoards = [...boards]
 
@@ -69,6 +65,7 @@ export const useTask = () => {
     auxBoards[indexBoard].columns[indexColumn].tasks = updatedTasks
     setBoards(auxBoards)
   }
+
   const editTask = ({ idOldColumn, task }) => {
     const auxBoards = [...boards]
 
@@ -129,18 +126,9 @@ export const useTask = () => {
   }
 
   return {
-    boards,
-    setBoards,
-    currentBoard,
-    setCurrentBoard,
-    updateBoard,
-    createBoard,
     createTask,
     updateTask,
     editTask,
     deleteTask,
-    deleteBoard,
-    modoLight,
-    setModoLight
-  }
+    initSubtasks  }
 }

@@ -18,7 +18,7 @@
         padding-top: 3.5rem;
     }
     .closeButton{
-        top: calc(100vh - 85%);
-        right: calc(100vw - 69%);
+        top: calc(100vh - 86%);
+        right: calc(100vw - 68%);
     }
 }

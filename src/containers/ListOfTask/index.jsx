@@ -1,13 +1,15 @@
 import React, { useState, useRef } from 'react'
+import { createPortal } from 'react-dom'
+
 import { CardTask } from '../../components/CardTask'
 import { Task } from '../../components/Task'
 
 import styles from './styles.module.css'
-import { createPortal } from 'react-dom'
 
 export const ListOfTask = ({ column }) => {
   const [showTask, setShowTask] = useState(false)
   const taskRef = useRef()
+
   const handleClickCard = (task) => {
     setShowTask(true)
     taskRef.current = task

@@ -11,6 +11,9 @@
   overflow: auto;
 
 }
+.modoLight{
+  background-color: var(--lightGray);
+}
 
 /* @media only screen and (max-width: 320px) {
   .app {

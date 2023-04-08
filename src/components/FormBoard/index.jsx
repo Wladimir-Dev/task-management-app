@@ -1,20 +1,19 @@
 import React, { useState, useId, useEffect } from 'react'
-import { useTask } from '../../hooks/useTask'
+
 import { CloseIcon } from '../Icons'
+import { useBoard } from '../../hooks/useBoard'
+import { useItem } from '../../hooks/useItem'
 
 import styles from './styles.module.css'
 import tablet from './tablet.module.css'
 
-export const FormBoard = ({
-  showWindow,
-  board = undefined,
-  newColumn = false,
-}) => {
-  const [columns, setColumns] = useState(
-    board?.columns || [{ id: 'ip1', name: '' }]
-  )
-  const { updateBoard, createBoard } = useTask()
-  const nameId = useId()
+export const FormBoard = ({showWindow ,board = undefined ,newColumn = false }) => {
+  const initColumns=[{ id: 'ip1', name: '' }]
+  
+  const [columns, setColumns] = useState(board?.columns || initColumns) 
+  const { updateBoard, createBoard } = useBoard()
+  const { addNewItems, removeItem, generarId } = useItem()
+  const inputNameId = useId()
 
   useEffect(() => {
     if (newColumn) {
@@ -28,46 +27,36 @@ export const FormBoard = ({
     }
   }, [])
 
-  const generarId = () => {
-    return Math.random()
-  }
-
   const handleNewColumn = () => {
-    const auxColumns = [...columns]
-    const newId = generarId()
-
-    auxColumns.push({ id: newId, name: '', tasks: [] })
-    setColumns(auxColumns)
+  
+    setColumns(addNewItems(columns,true))
   }
+
   const handleDeleteColumn = (id) => {
-    let aux = [...columns]
-
-    aux = aux.filter((item) => item.id != id)
-    setColumns(aux)
+    
+    setColumns(removeItem(columns,id))
   }
+
   const handleClose = () => {
     showWindow(false)
   }
+
   const handleSubmit = (e) => {
     e.preventDefault()
+   
+    const auxColumns = columns.map((column) => ({
+      id: column.id,
+      name: document.getElementById(column.id).value,
+      tasks: column.tasks || [],
+    }))
 
     if (board) {
-      const auxColumns = columns.map((column) => ({
-        id: column.id,
-        name: document.getElementById(column.id).value,
-        tasks: column.tasks,
-      }))
-
-      updateBoard(board.id, e.target.nameId.value, auxColumns)
-    } else {
-      const auxColumns = columns.map((column) => ({
-        id: column.id,
-        name: document.getElementById(column.id).value,
-        tasks: [],
-      }))
+      updateBoard(board.id, e.target.inputNameId.value, auxColumns)
+    } 
+    else {
       const objAux = {
-        id: 3,
-        name: e.target.nameId.value,
+        id: generarId(),
+        name: e.target.inputNameId.value,
         columns: auxColumns,
       }
       createBoard(objAux)
@@ -83,11 +72,11 @@ export const FormBoard = ({
       >
         {board ? <h2>edit board</h2> : <h2>add new board</h2>}
         <fieldset>
-          <label htmlFor={nameId}>name</label>
+          <label htmlFor={inputNameId}>name</label>
           <input
             type='text'
-            id={nameId}
-            name='nameId'
+            id={inputNameId}
+            name='inputNameId'
             defaultValue={board && board.name}
             disabled={newColumn}
             className={newColumn && styles.disable}

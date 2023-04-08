@@ -1,9 +1,11 @@
 import React, { useId, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 
-import { useTask } from '../../hooks/useTask'
 import { CloseIcon, VerticalEllipsisIcon } from '../Icons'
 import { FormTask } from '../FormTask'
+
+import { useTask } from '../../hooks/useTask'
+import { useBoard } from '../../hooks/useBoard'
 
 import styles from './styles.module.css'
 import tablet from './tablet.module.css'
@@ -12,7 +14,8 @@ export const Task = ({ task, showWindow }) => {
   const selectId = useId()
   const optionsId = useId()
 
-  const { currentBoard, updateTask, deleteTask } = useTask()
+  const { updateTask, deleteTask } = useTask()
+  const { currentBoard } = useBoard()
 
   const refCheckOptions = useRef()
   const currentSelect = useRef(task.statusId)
