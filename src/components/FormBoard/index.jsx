@@ -12,7 +12,7 @@ export const FormBoard = ({showWindow ,board = undefined ,newColumn = false }) =
   
   const [columns, setColumns] = useState(board?.columns || initColumns) 
   const { updateBoard, createBoard } = useBoard()
-  const { addNewItems, removeItem, generarId } = useItem()
+  const { addNewItem, removeItem, generarId } = useItem()
   const inputNameId = useId()
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export const FormBoard = ({showWindow ,board = undefined ,newColumn = false }) =
 
   const handleNewColumn = () => {
   
-    setColumns(addNewItems(columns,true))
+    setColumns(addNewItem(columns,true))
   }
 
   const handleDeleteColumn = (id) => {

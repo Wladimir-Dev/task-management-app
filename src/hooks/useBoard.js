@@ -7,7 +7,6 @@ export const useBoard = () => {
   const createBoard = (newBoard) => {
     const auxBoards = [...boards, newBoard]
     setBoards(auxBoards)
-    window.localStorage.setItem('reactBoards',JSON.stringify(auxBoards))
   }
   const updateBoard = (idNewBoard, nameBoard, columnsBoard) => {
     const index = boards.findIndex((oldBoard) => oldBoard.id === idNewBoard)
