@@ -6,7 +6,7 @@ import {
   DarkLogoIcon,
   HideSidebarIcon,
   LightLogoIcon,
-  ShowSidebarIcon
+  ShowSidebarIcon,
 } from '../../components/Icons'
 import { FormBoard } from '../../components/FormBoard'
 
@@ -15,7 +15,7 @@ import { useBoard } from '../../hooks/useBoard'
 import styles from './styles.module.css'
 import tablet from './tablet.module.css'
 
-export function ListOfBoards ({ closeWindow }) {
+export function ListOfBoards({ closeWindow }) {
   const [showNewBoard, setShowNewBoard] = useState(false)
 
   const { boards, currentBoard, setCurrentBoard, modoLight, setModoLight } =
@@ -45,7 +45,11 @@ export function ListOfBoards ({ closeWindow }) {
       >
         <ShowSidebarIcon />
       </label>
-      <section className={`${modoLight && styles.onLight} ${styles.containerList} ${tablet.containerList}`}>
+      <section
+        className={`${modoLight && styles.onLight} ${styles.containerList} ${
+          tablet.containerList
+        }`}
+      >
         <div>
           <span>ALL BOARDS ({boards.length})</span>
           <ul>
@@ -67,8 +71,12 @@ export function ListOfBoards ({ closeWindow }) {
           </ul>
         </div>
         <div className={`${styles.footer} ${tablet.footer}`}>
-          <div className={`${modoLight && styles.onLightFooter} ${styles.footerMode}`}>
-            <DarkLogoIcon />
+          <div
+            className={`${modoLight && styles.onLightFooter} ${
+              styles.footerMode
+            }`}
+          >
+            <LightLogoIcon />
             <label className={styles.guia} hidden />
             <input
               type='checkbox'
@@ -80,7 +88,7 @@ export function ListOfBoards ({ closeWindow }) {
             <label htmlFor={sliderId} className={styles.containerSlider}>
               <span className={styles.sliderButton} />
             </label>
-            <LightLogoIcon />
+            <DarkLogoIcon />
           </div>
           <label
             htmlFor={showId}

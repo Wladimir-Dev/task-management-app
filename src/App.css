@@ -9,17 +9,9 @@
 
   background-color: var(--veryDarkGray);
   overflow: auto;
-  transition: .3s
 
 
 }
 .modoLight{
   background-color: var(--lightGray);
 }
-
-/* @media only screen and (max-width: 320px) {
-  .app {
-    height: 100%;
-  }
-} */
-/*  */
