@@ -6,9 +6,10 @@ import { FormTask } from '../FormTask'
 import {
   AddTaskMobileIcon,
   ChevronDownIcon,
+  LogoDarkIcon,
   LogoLightIcon,
   LogoMobileIcon,
-  VerticalEllipsisIcon,
+  VerticalEllipsisIcon
 } from '../Icons'
 
 import { useBoard } from '../../hooks/useBoard'
@@ -16,12 +17,12 @@ import { useBoard } from '../../hooks/useBoard'
 import styles from './styles.module.css'
 import tablet from './tablet.module.css'
 
-export default function Header() {
+export default function Header () {
   const [showEditBoard, setShowEditBoard] = useState(false)
   const [showNewTask, setShowNewTask] = useState(false)
-  
-  const { currentBoard, deleteBoard } = useBoard()
-  
+
+  const { currentBoard, deleteBoard, modoLight } = useBoard()
+
   const boardsId = useId()
   const optionsId = useId()
   const refCheckBoards = useRef()
@@ -42,20 +43,24 @@ export default function Header() {
     refCheckOptions.current.checked = false
   }
   return (
-    <header className={`${styles.header} ${tablet.header}`}>
+    <header
+      className={`
+   ${modoLight && styles.onLight} ${styles.header} ${tablet.header}`}
+    >
       <div className={tablet.headerLeft}>
         <figure>
           <LogoMobileIcon />
         </figure>
-        <figure>
-          <LogoLightIcon />
-        </figure>
+        <figure>{modoLight ? <LogoDarkIcon /> : <LogoLightIcon />}</figure>
       </div>
       <div className={`${styles.headerRigth} ${tablet.headerRigth}`}>
         <label className={`${styles.onlyBoardName} ${tablet.onlyBoardName}`}>
           {currentBoard.name}
         </label>
-        <label htmlFor={boardsId} className={`${styles.boardName} ${tablet.boardName}`}>
+        <label
+          htmlFor={boardsId}
+          className={`${styles.boardName} ${tablet.boardName}`}
+        >
           {currentBoard.name}
           <ChevronDownIcon />
         </label>
@@ -63,7 +68,9 @@ export default function Header() {
         <div className={`${styles.containerBoards} ${tablet.containerBoards}`}>
           <ListOfBoards closeWindow={closeListBoards} />
         </div>
-        <div className={`${styles.containerAddButton} ${tablet.containerAddButton}`}>
+        <div
+          className={`${styles.containerAddButton} ${tablet.containerAddButton}`}
+        >
           <button
             type='button'
             className={`${styles.addButton} ${tablet.addButton}`}
@@ -75,7 +82,7 @@ export default function Header() {
             <VerticalEllipsisIcon />
           </label>
           <input ref={refCheckOptions} type='checkbox' id={optionsId} hidden />
-          <div className={styles.containerOptions}>
+          <div className={`${modoLight && styles.onLight} ${styles.containerOptions}`}>
             <button type='button' onClick={handleEditBoard}>
               Edit Board
             </button>

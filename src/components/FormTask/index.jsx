@@ -8,29 +8,30 @@ import { useItem } from '../../hooks/useItem'
 import styles from './styles.module.css'
 import tablet from './tablet.module.css'
 
-import { createGlobalStyle } from 'styled-components'
-
-export const FormTask = ({ showWindow, task = undefined, closeWindowFather }) => {
+export const FormTask = ({
+  showWindow,
+  task = undefined,
+  closeWindowFather
+}) => {
   const titleId = useId()
   const descriptionId = useId()
   const statusSelectId = useId()
   const columnRef = useRef(task?.statusId)
 
   const { createTask, editTask, initSubtasks } = useTask()
-  const { currentBoard } = useBoard()
+  const { currentBoard, modoLight } = useBoard()
   const { addNewItem, removeItem, generarId } = useItem()
-  
-  
-  const [subTasks, setSubTasks] = useState(task ? initSubtasks(task.subtasks) : [])
+
+  const [subTasks, setSubTasks] = useState(
+    task ? initSubtasks(task.subtasks) : []
+  )
 
   const handleDeleteRow = (id) => {
-    
-    setSubTasks(removeItem(subTasks,id))
+    setSubTasks(removeItem(subTasks, id))
   }
 
   const handleNewRow = () => {
-
-    setSubTasks(addNewItem(subTasks,false))
+    setSubTasks(addNewItem(subTasks, false))
   }
 
   const handleClose = () => {
@@ -44,7 +45,7 @@ export const FormTask = ({ showWindow, task = undefined, closeWindowFather }) =>
 
     const auxSubTasks = subTasks.map((subTask) => ({
       title: document.getElementById(subTask.id).value,
-      isCompleted: subTask.isCompleted || false,
+      isCompleted: subTask.isCompleted || false
     }))
 
     const indexColumn = currentBoard.columns.findIndex(
@@ -65,7 +66,7 @@ export const FormTask = ({ showWindow, task = undefined, closeWindowFather }) =>
         description: e.target.descriptionId.value,
         status: currentBoard.columns[indexColumn].name,
         statusId: columnId,
-        subtasks: auxSubTasks,
+        subtasks: auxSubTasks
       }
 
       createTask({ idBoard: currentBoard.id, indexColumn, task: objAux })
@@ -76,7 +77,10 @@ export const FormTask = ({ showWindow, task = undefined, closeWindowFather }) =>
 
   return (
     <section className={`${tablet.containerForm}`}>
-      <form className={`${styles.newTask} ${tablet.newTask}`} onSubmit={handleSubmit}>
+      <form
+        className={`${modoLight && styles.onLight} ${styles.newTask} ${tablet.newTask}`}
+        onSubmit={handleSubmit}
+      >
         {task ? <h2>edit task</h2> : <h2>add new task</h2>}
 
         <fieldset>
@@ -112,7 +116,7 @@ export const FormTask = ({ showWindow, task = undefined, closeWindowFather }) =>
           <button
             type='button'
             onClick={handleNewRow}
-            className={styles.whiteButton}
+            className={`${modoLight && styles.onLightButton} ${styles.whiteButton}`}
           >
             + Add New Subtask
           </button>

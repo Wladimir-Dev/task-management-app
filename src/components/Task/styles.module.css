@@ -12,12 +12,7 @@
   flex-direction: column;
   row-gap: 1.5rem;
 }
-/* .task form {
-  display: flex;
-  flex-direction: column;
-  row-gap: 1.5rem;
- 
-} */
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -52,10 +47,9 @@
   border-radius: 0.8rem;
   font-weight: 600;
   font-size: 1.2rem;
-  
 }
 .subTask input[type='checkbox'],
-.subTask label{
+.subTask label {
   cursor: pointer;
 }
 .subTask input[type='checkbox'] {
@@ -82,13 +76,14 @@
 .task :is(legend, .status) {
   font-size: 1.2rem;
   font-weight: 600;
-  color: white;
 }
 .task select {
   outline: none;
   border: 2px solid var(--mediumGray);
   padding: 1rem;
-  color: white;
+  color: inherit;
+  font-family: inherit;
+  font-weight: 500;
   border-radius: 0.5rem;
   width: 100%;
   transition: border 0.2s ease;
@@ -101,6 +96,19 @@
 }
 .containerOptions {
   display: none;
+  position: absolute;
+  background-color: var(--veryDarkGray);
+  padding: 2rem;
+  top: 7rem;
+  right: 2rem;
+  border-radius: 0.8rem;
+  flex-direction: column;
+  align-items: start;
+  row-gap: 1.5rem;
+  width: 18rem;
+  -webkit-box-shadow: 1px 2px 19px -8px rgba(0, 0, 0, 0.219);
+  -moz-box-shadow: 1px 2px 19px -8px rgba(0, 0, 0, 0.219);
+  box-shadow: 1px 2px 19px -8px rgba(0, 0, 0, 0.219);
 }
 .containerOptions button {
   font-size: 1.7rem;
@@ -112,19 +120,26 @@
 .containerOptions > :nth-child(2) {
   color: var(--red);
 }
-.optionIcon{
+.optionIcon {
   cursor: pointer;
 }
 .optionIcon ~ input:checked ~ .containerOptions {
-  position: absolute;
-  background-color: var(--veryDarkGray);
-  padding: 2rem;
-  top: 7rem;
-  right: 2rem;
-  border-radius: 0.8rem;
   display: flex;
-  flex-direction: column;
-  align-items: start;
-  row-gap: 1.5rem;
-  width: 18rem;
+}
+.onLight {
+  background-color: white;
+  color: black;
+}
+.onLight > .header {
+  color: black;
+}
+.onLight :is(legend) {
+  color: var(--mediumGray);
+  font-weight: 600;
+}
+.onLight option {
+  background-color: white;
+}
+.onLight .subTask {
+  background-color: var(--veryLightBlue);
 }

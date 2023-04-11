@@ -1,8 +1,14 @@
 import { useContext } from 'react'
 import { BoardContext } from '../context/BoardContext'
 export const useBoard = () => {
-  const { boards, setBoards, currentBoard, setCurrentBoard, modoLight, setModoLight } =
-    useContext(BoardContext)
+  const {
+    boards,
+    setBoards,
+    currentBoard,
+    setCurrentBoard,
+    modoLight,
+    setModoLight,
+  } = useContext(BoardContext)
 
   const createBoard = (newBoard) => {
     const auxBoards = [...boards, newBoard]
@@ -22,5 +28,14 @@ export const useBoard = () => {
     setCurrentBoard(auxBoards[0])
     setBoards(auxBoards)
   }
-  return { boards, currentBoard, setCurrentBoard, modoLight, setModoLight, createBoard, updateBoard, deleteBoard }
+  return {
+    boards,
+    currentBoard,
+    setCurrentBoard,
+    modoLight,
+    setModoLight,
+    createBoard,
+    updateBoard,
+    deleteBoard
+  }
 }

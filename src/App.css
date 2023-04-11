@@ -9,6 +9,8 @@
 
   background-color: var(--veryDarkGray);
   overflow: auto;
+  transition: .3s
+
 
 }
 .modoLight{

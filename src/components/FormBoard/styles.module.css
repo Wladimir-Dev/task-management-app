@@ -9,13 +9,12 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  
+  color: white;
   row-gap: 1.5rem;
   overflow-y: scroll;
 }
 .newBoard h2 {
   font-size: 2rem;
-  
 }
 .newBoard label {
   font-size: 1.2rem;
@@ -23,7 +22,6 @@
 }
 .newBoard :is(h2, label, .blueButton) {
   text-transform: capitalize;
-  color: white;
 }
 .newBoard > fieldset {
   display: flex;
@@ -38,6 +36,8 @@
   border-radius: 0.5rem;
   width: 100%;
   transition: border 0.2s ease;
+  font-weight: 500;
+  font-family: inherit;
 }
 .newBoard input:focus {
   border: 2px solid var(--darkBlue);
@@ -61,12 +61,28 @@
 }
 .blueButton {
   background-color: var(--darkBlue);
+  color: white;
 }
-.closeButton{
+.closeButton {
   position: absolute;
   top: 1.2rem;
   right: 1.2rem;
 }
-.disable{
-  opacity: .6;
+.disable {
+  opacity: 0.6;
+}
+.onLight {
+  background-color: white;
+  color: black;
+}
+.onLight :is(label){
+  color: var(--mediumGray);
+  font-weight: 600;
+}
+.onLight input {
+  color: black;
+  
+}
+.onLightButton{
+  background-color: var(--veryLightBlue);
 }

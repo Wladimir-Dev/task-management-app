@@ -7,11 +7,15 @@ import { useItem } from '../../hooks/useItem'
 import styles from './styles.module.css'
 import tablet from './tablet.module.css'
 
-export const FormBoard = ({showWindow ,board = undefined ,newColumn = false }) => {
-  const initColumns=[{ id: 'ip1', name: '' }]
-  
-  const [columns, setColumns] = useState(board?.columns || initColumns) 
-  const { updateBoard, createBoard } = useBoard()
+export const FormBoard = ({
+  showWindow,
+  board = undefined,
+  newColumn = false
+}) => {
+  const initColumns = [{ id: 'ip1', name: '' }]
+
+  const [columns, setColumns] = useState(board?.columns || initColumns)
+  const { updateBoard, createBoard, modoLight } = useBoard()
   const { addNewItem, removeItem, generarId } = useItem()
   const inputNameId = useId()
 
@@ -20,7 +24,7 @@ export const FormBoard = ({showWindow ,board = undefined ,newColumn = false }) =
       const auxColumns = columns.map((column) => {
         return {
           ...column,
-          disable: true,
+          disable: true
         }
       })
       setColumns(auxColumns)
@@ -28,13 +32,11 @@ export const FormBoard = ({showWindow ,board = undefined ,newColumn = false }) =
   }, [])
 
   const handleNewColumn = () => {
-  
-    setColumns(addNewItem(columns,true))
+    setColumns(addNewItem(columns, true))
   }
 
   const handleDeleteColumn = (id) => {
-    
-    setColumns(removeItem(columns,id))
+    setColumns(removeItem(columns, id))
   }
 
   const handleClose = () => {
@@ -43,21 +45,20 @@ export const FormBoard = ({showWindow ,board = undefined ,newColumn = false }) =
 
   const handleSubmit = (e) => {
     e.preventDefault()
-   
+
     const auxColumns = columns.map((column) => ({
       id: column.id,
       name: document.getElementById(column.id).value,
-      tasks: column.tasks || [],
+      tasks: column.tasks || []
     }))
 
     if (board) {
       updateBoard(board.id, e.target.inputNameId.value, auxColumns)
-    } 
-    else {
+    } else {
       const objAux = {
         id: generarId(),
         name: e.target.inputNameId.value,
-        columns: auxColumns,
+        columns: auxColumns
       }
       createBoard(objAux)
     }
@@ -67,7 +68,7 @@ export const FormBoard = ({showWindow ,board = undefined ,newColumn = false }) =
   return (
     <section className={`${tablet.containerForm}`}>
       <form
-        className={`${styles.newBoard} ${tablet.newBoard}`}
+        className={`${modoLight && styles.onLight} ${styles.newBoard} ${tablet.newBoard}`}
         onSubmit={handleSubmit}
       >
         {board ? <h2>edit board</h2> : <h2>add new board</h2>}
@@ -108,7 +109,7 @@ export const FormBoard = ({showWindow ,board = undefined ,newColumn = false }) =
           <button
             type='button'
             onClick={handleNewColumn}
-            className={styles.whiteButton}
+            className={`${modoLight && styles.onLightButton} ${styles.whiteButton}`}
           >
             + Add new Column
           </button>

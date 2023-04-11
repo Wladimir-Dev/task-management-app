@@ -15,7 +15,7 @@ export const Task = ({ task, showWindow }) => {
   const optionsId = useId()
 
   const { updateTask, deleteTask } = useTask()
-  const { currentBoard } = useBoard()
+  const { currentBoard, modoLight } = useBoard()
 
   const refCheckOptions = useRef()
   const currentSelect = useRef(task.statusId)
@@ -37,7 +37,7 @@ export const Task = ({ task, showWindow }) => {
       idColumn: task.statusId,
       idTask: task.id,
       idNewColumn: e.target.value,
-      newTask: task,
+      newTask: task
     })
   }
 
@@ -53,7 +53,7 @@ export const Task = ({ task, showWindow }) => {
     updateTask({
       idColumn: task.statusId,
       idTask: task.id,
-      subTasks: task.subtasks,
+      subTasks: task.subtasks
     })
   }
 
@@ -67,14 +67,14 @@ export const Task = ({ task, showWindow }) => {
 
   return (
     <section className={`${tablet.containerForm}`}>
-      <form className={`${styles.task} ${tablet.task}`}>
+      <form className={`${modoLight && styles.onLight} ${styles.task} ${tablet.task}`}>
         <div className={styles.header}>
           <h2>{task.title}</h2>
           <label htmlFor={optionsId} className={styles.optionIcon}>
             <VerticalEllipsisIcon />
           </label>
           <input ref={refCheckOptions} type='checkbox' id={optionsId} hidden />
-          <div className={styles.containerOptions}>
+          <div className={`${modoLight && styles.onLight} ${styles.containerOptions}`}>
             <button type='button' onClick={handleEditTask}>
               Edit Task
             </button>

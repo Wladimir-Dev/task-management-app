@@ -11,6 +11,7 @@
   flex-direction: column;
   row-gap: 1.5rem;
   overflow-y: scroll;
+  color: white;
 }
 .newTask h2 {
   font-size: 2rem;
@@ -21,7 +22,7 @@
 }
 .newTask :is(h2, label) {
   text-transform: capitalize;
-  color: white;
+ 
 }
 .newTask > fieldset {
   display: flex;
@@ -40,6 +41,8 @@
   border-radius: 0.5rem;
   width: 100%;
   transition: border 0.2s ease;
+  font-family: inherit;
+  font-weight: 500;
 }
 .newTask option {
   color: var(--mediumGray);
@@ -53,7 +56,6 @@
 .containerInput {
   display: flex;
   column-gap: 1rem;
-  /* margin-top: 1rem; */
 }
 .whiteButton,
 .blueButton {
@@ -74,4 +76,22 @@
   position: absolute;
   top: 1.2rem;
   right: 1.2rem;
+}
+.onLight {
+  background-color: white;
+  color: black;
+}
+.onLight :is(label){
+  color: var(--mediumGray);
+  font-weight: 600;
+}
+.onLight :is(input, textarea, select) {
+  color: black;
+  
+}
+.onLight option {
+  background-color: white;
+}
+.onLightButton{
+  background-color: var(--veryLightBlue);
 }

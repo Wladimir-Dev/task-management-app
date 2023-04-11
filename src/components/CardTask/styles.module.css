@@ -1,13 +1,20 @@
-.cardTask{
-    background-color: var(--darkGray);
-    border-radius: .8rem;
-    padding: 2rem;
-    height: 10rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.cardTask {
+  background-color: var(--darkGray);
+  border-radius: 0.8rem;
+  padding: 2rem;
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.cardTask h3{
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+.cardTask h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.onLight {
+  background-color: white;
+  color: black;
+  -webkit-box-shadow: 1px 2px 19px -8px rgba(0, 0, 0, 0.219);
+  -moz-box-shadow: 1px 2px 19px -8px rgba(0, 0, 0, 0.219);
+  box-shadow: 1px 2px 19px -8px rgba(0, 0, 0, 0.219);
 }
